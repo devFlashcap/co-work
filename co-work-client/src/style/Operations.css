@@ -1,0 +1,15 @@
+.operations ul{
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.operations ul li p {
+    cursor: pointer;
+}
+
+.operations ul li p span{
+    margin-right: 5px;
+    padding: 10px;
+    font-weight: bold;
+}

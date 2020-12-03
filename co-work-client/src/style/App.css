@@ -1,0 +1,8 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    background: rgb(2,117,216);
+    background: linear-gradient(0deg, rgba(230,243,255,1) 0%, rgba(230, 243, 255, 1) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}

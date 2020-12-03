@@ -1,0 +1,65 @@
+$blue: #0275d8;
+$inverse: #292b2c;
+
+.chat-container {
+    background: #fff;
+    padding: 0;
+    height: 100%;
+}
+
+.group-header {
+    background: #fff;
+    border-bottom: 1px solid #000;
+}
+
+.group-name {
+    vertical-align: center;
+}
+
+.chat-bubble-left,
+.chat-bubble-right{
+    padding: 10px 14px;
+    margin: 10px 30px;
+    border-radius: 9px;
+    position: relative;
+    color: #fff;
+}
+
+.chat-bubble-left p.send_info,
+.chat-bubble-right p.send_info{
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #fff;
+}
+
+.chat-bubble-left p.message,
+.chat-bubble-right p.message{
+    padding: 5px;
+    margin: 0;
+}
+
+.chat-bubble-left{ 
+    background: $blue;
+    left: 0;
+    float: left;
+}
+
+.chat-bubble-right{
+    background: $inverse;
+    right: 0;
+    float: right;
+}
+
+.messages{
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    height: 700px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.chat-panel {
+    padding: 0 !important;
+    background: #eee;
+}

@@ -1,0 +1,37 @@
+.chat-box-controls {
+    background: #eee;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    padding: 10px 15px;
+    align-items: center;
+    margin-top: 19px;
+        
+    input {
+        margin: 0 10px;
+        padding: 6px 2px;
+        width: 80%;
+    }
+        
+    i {
+        color: grey;
+        font-size: 30px;
+        vertical-align: middle;
+        margin-left: 25px;
+    }
+
+    button i {
+        margin: 0;
+    }
+
+    button {
+        font-size: 30px;
+        vertical-align: middle;
+        margin-left: 25px;
+    }
+
+    mdi-icon {
+        fill: #fff;
+        background: #0275d8;
+    }
+}
