@@ -82,7 +82,7 @@ class AdminRegTokensRegToken extends Component
                             onChange={ this.onChangeDate } />
                     </div>
                     <div className="form-group">
-                        <input type="submit" value="Modify user" className="btn btn-primary" />
+                        <input type="submit" value="Create registration token" className="btn btn-primary" />
                     </div>
                 </form>
             </div>

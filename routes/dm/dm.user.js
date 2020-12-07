@@ -62,8 +62,46 @@ module.exports.user_login = async data => {
             response: {
                 id: user.id,
                 email: user.email,
+                full_name: user.full_name,
                 level: user.level
             }
+        };
+    }
+    catch(err){
+        return {
+            status: response_code.HTTP_500,
+            response: err
+        }
+    }
+};
+
+module.exports.user_password_change = async data => {
+    try{
+        const user = await ModelUser.findOne({ email: data.email });
+        if (!user) {
+            return {
+                status: response_code.HTTP_404,
+                response: { email: "E-mail address not found" }
+            };
+        }
+
+        const isMatch = await bcrypt.compare(data.password, user.password);
+        if (!isMatch) {
+            return {
+                status: response_code.HTTP_400,
+                response: { password: "Invalid password" }
+            };
+        }
+
+        const salt = await bcrypt.genSalt(10);
+        const passwordHashed = await bcrypt.hash(data.password2, salt);
+        user.password = passwordHashed;
+
+        await user.save();
+  
+        return {
+            status: response_code.HTTP_200,
+            response: { passwordChange: "Password has been changed successfully" }
         };
     }
     catch(err){

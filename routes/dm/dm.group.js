@@ -32,7 +32,13 @@ module.exports.group_read_all = async () => {
 
 module.exports.group_read_for_user = async data => {
     try{
-        const groups = await ModelGroup.find( { members: mongoose.Types.ObjectId(data.userID)}, 'name avatar_color avatar_bgcolor');
+        const groups = await ModelGroup.find( { members: mongoose.Types.ObjectId(data.userID)}, 'name avatar_color avatar_bgcolor')
+        .populate({
+            path: 'leader', select: 'full_name email',
+        })
+        .populate({
+            path: 'members', select: 'full_name email'
+        });
         if(groups){
             return {
                 status: response_code.HTTP_200,
@@ -198,6 +204,67 @@ module.exports.group_modify = async data => {
     }
 };
 
+module.exports.group_members_add = async data => {
+    try{
+        const group = await ModelGroup.findById(data.groupID);
+        if(group){
+            for(const memberID of data.memberIDs){
+                if(!group.members.includes(memberID)){
+                    group.members = [...group.members, memberID];
+                }
+            }
+            const saveGroup = await group.save();
+            return {
+                status: response_code.HTTP_200,
+                response: saveGroup
+            }
+        }
+        else{
+            return {
+                status: response_code.HTTP_404,
+                response: {group: 'Group not found'}
+            }
+        }
+    }
+    catch(err){
+        return {
+            status: response_code.HTTP_500,
+            response: err
+        }
+    }
+};
+
+module.exports.group_members_remove = async data => {
+    try{
+        const group = await ModelGroup.findById(data.groupID);
+        if(group){
+            for(const memberID of data.memberIDs){
+                const memberIndex = group.members.findIndex(mID => mID == memberID);
+                if(memberIndex >= 0){
+                    group.members = [...group.members.slice(0, memberIndex), ...group.members.slice(memberIndex+1)];
+                }
+            }
+            const saveGroup = await group.save();
+            return {
+                status: response_code.HTTP_200,
+                response: saveGroup
+            }
+        }
+        else{
+            return {
+                status: response_code.HTTP_404,
+                response: {group: 'Group not found'}
+            }
+        }
+    }
+    catch(err){
+        return {
+            status: response_code.HTTP_500,
+            response: err
+        }
+    }
+};
+
 module.exports.group_loadMessages = async data => {
     try{
         const group = await ModelGroup.findById(data._id).select('messages -_id')
@@ -219,7 +286,6 @@ module.exports.group_loadMessages = async data => {
         }
     }
     catch(err){
-        console.log(err);
         return {
             status: response_code.HTTP_500,
             response: err

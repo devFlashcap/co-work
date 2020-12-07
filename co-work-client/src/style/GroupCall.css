@@ -1,0 +1,18 @@
+div.participants{
+    background: #343a40;
+    padding: 4em;
+    margin: 4em auto;
+    width: 80%;
+}
+
+div.participants video{
+    border: 1px solid #fff;
+    width: 100%;
+    height: 300px;
+}
+
+div.participants div.row:first-child{
+    border-bottom: 1px solid #fff;
+    margin-bottom: 2em;
+    color: #eee;
+}

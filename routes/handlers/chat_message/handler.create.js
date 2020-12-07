@@ -6,6 +6,7 @@ const actions = require('../../../co-work-client/src/actions/creators/types');
 const debug_mode = require('../../../config/keys').DEBUG_MODE;
 
 module.exports.chat_message_create = async (store, io, socket, data) => {
+    console.log(data);
     const result = await dm_chatMessage.chatMessage_create(data);
     debug_mode && socket.emit('debug_response', result);
     if(result.status === response_code.HTTP_200){
@@ -37,6 +38,7 @@ module.exports.chat_message_create = async (store, io, socket, data) => {
             if(onlineMember.userID === data.sender) continue;
             notification.userID = onlineMember.userID;
             const notificationSaved = await dm_notification.notification_add(notification);
+            console.log(notificationSaved);
             debug_mode && socket.emit('debug_response', notificationSaved);
             if(notificationSaved.status === response_code.HTTP_200){
                 for(const socketID of onlineMember.socketIDs){

@@ -4,20 +4,20 @@ import store from './store';
 import AppComponent from './components/component.app';
 import jwt_decode from 'jwt-decode';
 import { 
-    userSocketAssign,
-    userSocketDeassign
-} from './actions/action.auth';
+    action_userSocketAssign,
+    action_userLogout
+} from './actions/creators/creator.auth';
 
 if(localStorage.jwtToken){
     const token = localStorage.jwtToken;
     const tokenDecoded = jwt_decode(token);
-    const user = tokenDecoded.response;
-    store.dispatch(userSocketAssign(user));
     const currentTime = Date.now() / 1000;
     if(tokenDecoded.exp < currentTime){
-        console.log('expired');
-        store.dispatch(userSocketDeassign());
-        window.location.href = './login';
+        store.dispatch(action_userLogout());
+    }
+    else{
+        const user = tokenDecoded.response;
+        store.dispatch(action_userSocketAssign(user));
     }
 }
 

@@ -32,7 +32,6 @@ export default function reducerGroup(state = initialState, action){
             };
         
         case GROUP_MODIFY:
-            console.log(action.payload);
             const groupIndex = state.groups.findIndex(g => g._id === action.payload._id);
             return {
                 ...state,

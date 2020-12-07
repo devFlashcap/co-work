@@ -35,7 +35,6 @@ export default function reducerNotification(state = initialState, action){
             }
         
         case NOTIFICATION_REMOVE:
-            console.log('remove notification');
             const indexToRemove = state.notifications.findIndex(n => n._id === action.payload);
             if(indexToRemove >= 0){
                 return {

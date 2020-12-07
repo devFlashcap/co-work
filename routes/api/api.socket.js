@@ -11,7 +11,7 @@ module.exports.handle_io = async (io, store) => {
     io.on('connection', socket => {    
         console.log("Socket connected: " + socket.id);
         socket.on('action', action => {
-            handler_user.handle_user(store, socket, action);
+            handler_user.handle_user(store, io, socket, action);
             handler_group.handle_group(store, io, socket, action);
             handler_chat_message.handle_chat_message(store, io, socket, action);
             handler_regToken.handle_regToken(socket, action);
@@ -21,7 +21,6 @@ module.exports.handle_io = async (io, store) => {
         });
 
         socket.on('signal', msg => {
-            //console.log('signal received', msg)
             const receiverId = msg.to
             const receiver = io.sockets.connected[receiverId]
             if (receiver) {
@@ -29,10 +28,7 @@ module.exports.handle_io = async (io, store) => {
                 from: socket.id,
                 ...msg
               }
-              //console.log('sending signal to', receiverId)
               io.to(receiverId).emit('signal', data);
-            } else {
-              //console.log('no receiver found', receiverId)
             }
           });
 

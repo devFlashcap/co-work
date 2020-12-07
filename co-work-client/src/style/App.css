@@ -6,3 +6,11 @@ html,body{
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+
+p.call-in-progress{
+    border: 1px solid #790000;
+    background: #ff3636;
+    color: #eee;
+    text-align: center;
+    margin: 0;
+}

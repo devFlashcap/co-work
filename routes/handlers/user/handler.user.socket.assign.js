@@ -11,6 +11,12 @@ module.exports.user_socket_assign = async (store, socket, user) => {
     debug_mode && socket.emit('debug_response', groups);
     if(groups.status === response_code.HTTP_200){
         socket.emit('action', {type: actions.GROUPS_OF_USER_SET, payload: groups.response});
+        for(const group of groups.response){
+            const groupID = group._id;
+            if(store.callInProgress(groupID)){
+                socket.emit('action', {type: actions.CALL_IN_PROGRESS_ADD, payload: groupID});
+            }
+        }
     }
     const notifications = await dm_notification.notification_read_all({userID: user.id});
     debug_mode && socket.emit('debug_response', notifications);

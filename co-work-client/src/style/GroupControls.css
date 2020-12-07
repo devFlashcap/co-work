@@ -1,0 +1,23 @@
+form{
+    padding: 0;
+    margin: 0;
+}
+
+.chat-box-controls {
+    background: #343a40;
+}
+
+.chat-box-controls input {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 5px 2px;
+    width: 80%;
+}
+
+.chat-box-controls button {
+    display: inline-block;
+    padding: 6px 30px;
+    font-size: 18px;
+    vertical-align: middle;
+    margin: 10px 15px;
+}

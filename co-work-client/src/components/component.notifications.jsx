@@ -7,11 +7,14 @@ import { withRouter } from 'react-router';
 
 class Notifications extends Component
 {
-    joinGroup(notification){
-        console.log(notification);
-        this.props.groupJoin({type: notification.type, groupID: notification.reference});
+    handleNotification(notification){
         switch(notification.type){
-            case 'chat':  
+            case 'chat':
+                this.props.groupJoin({type: notification.type, groupID: notification.reference});
+                this.props.history.push('/groupview');
+                break;
+            case 'groupadd':
+                this.props.groupJoin({type: 'chat', groupID: notification.reference});
                 this.props.history.push('/groupview');
                 break;
             default:
@@ -23,7 +26,7 @@ class Notifications extends Component
 
         const notifications = this.props.notifications.notifications.map((notification) => {
             return (
-                <Dropdown.Item key = {notification._id} onClick  = {() => this.joinGroup(notification)}>
+                <Dropdown.Item key = {notification._id} onClick  = {() => this.handleNotification(notification)}>
                     <div>
                         <p>{notification.message}({notification.count})</p>
                     </div>

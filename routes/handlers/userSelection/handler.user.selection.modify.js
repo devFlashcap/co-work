@@ -11,7 +11,6 @@ module.exports.user_selection_modify = async (store, socket, data) => {
         full_name: data.full_name,
         level: data.level
     });
-    console.log(user);
     debug_mode && socket.emit('debug_response', user);
     if(user.status === response_code.HTTP_200){
         socket.broadcast.emit('action', {type: actions.USER_SELECTION_MODIFY, payload: user.response});

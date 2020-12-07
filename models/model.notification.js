@@ -17,7 +17,7 @@ const schemaNotification = new Schema({
 
     reference: {
         type: mongoose.ObjectId,
-        required: true,
+        required: false,
     },
 
     message: {

@@ -8,6 +8,8 @@ import reducerGroup from './reducer.group';
 import reducerChatMessage from './reducer.chat.message';
 import reducerNotification from './reducer.notification';
 import reducerUserSelection from './reducer.user.selection';
+import reducerCallsInProgress from './reducer.callsInProgress';
+import reducerCallReceived from './reducer.call.received';
 
 export default combineReducers({
     auth: reducerAuth,
@@ -18,4 +20,6 @@ export default combineReducers({
     messages: reducerChatMessage,
     notifications: reducerNotification,
     userSelection: reducerUserSelection,
+    callsInProgress: reducerCallsInProgress,
+    callReceived: reducerCallReceived
 });

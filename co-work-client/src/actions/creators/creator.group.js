@@ -5,7 +5,9 @@ import {
     IO_GROUP_LEAVE,
     IO_GROUP_CREATE,
     IO_GROUP_MODIFY,
-    IO_GROUP_REMOVE
+    IO_GROUP_REMOVE,
+    IO_GROUP_MEMBERS_ADD,
+    IO_GROUP_MEMBERS_REMOVE
 } from './types';
 
 export const action_setGroupsOfUser = groups => {
@@ -53,6 +55,19 @@ export const action_groupModify = data => {
 export const action_groupRemove = data => {
     return {
         type: IO_GROUP_REMOVE,
+        payload: data
+    }
+}
+export const action_groupMembersAdd = data => {
+    return {
+        type: IO_GROUP_MEMBERS_ADD,
+        payload: data
+    }
+}
+
+export const action_groupMembersRemove = data => {
+    return {
+        type: IO_GROUP_MEMBERS_REMOVE,
         payload: data
     }
 }

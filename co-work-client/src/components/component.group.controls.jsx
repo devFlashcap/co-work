@@ -5,7 +5,7 @@ import { chatMessageSend } from '../actions/action.chat.message';
 import SentimentVerySatisfiedIcon  from 'mdi-react/SentimentVerySatisfiedIcon';
 import MicrophoneIcon from 'mdi-react/MicrophoneIcon';
 import SendIcon from 'mdi-react/SendIcon';
-import '../style/GroupControls.scss';
+import '../style/GroupControls.css';
 
 class GroupControls extends Component 
 {
@@ -38,27 +38,21 @@ class GroupControls extends Component
     render()
     {
         return (
-            <div className="row">
-                <div className="col-12">
-                    <form 
-                        onSubmit = {this.onSubmit}
-                        ref={ (ref) => { this.form = ref; } }>
-                        <div className="chat-box-controls">
-                            <input 
-                                type="text" 
-                                placeholder="Type here..."
-                                id = "message"
-                                className = "form-control custom-control" 
-                                value = { this.state.message }
-                                onChange = { this.onChange }
-                            />
-                            <i className="material-icons"><SentimentVerySatisfiedIcon /></i>
-                            <i className="material-icons"><MicrophoneIcon /></i>
-                            <button type = "submit"><i className="material-icons"><SendIcon /></i></button>
-                        </div>
-                    </form>
+            <form 
+                onSubmit = {this.onSubmit}
+                ref={ (ref) => { this.form = ref; } }>
+                <div className="chat-box-controls">
+                    <input 
+                        type="text" 
+                        placeholder="Type here..."
+                        id = "message"
+                        className = "form-control custom-control" 
+                        value = { this.state.message }
+                        onChange = { this.onChange }
+                    />
+                    <button type = "submit" className = "btn btn-primary">Send</button>
                 </div>
-            </div>
+            </form>
         );
     }
 }

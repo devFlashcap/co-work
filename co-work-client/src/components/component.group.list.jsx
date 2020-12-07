@@ -37,9 +37,9 @@ class GroupList extends Component
                             }}
                             key = {group._id}>
                             <Avatar name = {group.name} fgColor = {group.avatar_color} color = {group.avatar_bgcolor} size = "110"/>
-                            <div className = "p-4 ">
+                            <div className = "px-5 py-3">
                                 <div className = "text-light text-capitalize"><h4><u>{group.name}</u></h4></div>
-                                <div className = "text-light pl-4">Short description</div>
+                                <p>{this.props.callsInProgress.includes(group._id) ? <p className = "call-in-progress">Call in progress</p> : null}</p>
                             </div>
                         </div>
                     );
@@ -81,6 +81,7 @@ const mapStateToProps = state => ({
     auth: state.auth,
     groups: state.groups,
     messages: state.messages,
+    callsInProgress: state.callsInProgress
 });
 
 export default withRouter(connect(

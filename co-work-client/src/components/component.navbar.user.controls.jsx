@@ -10,7 +10,7 @@ class NavbarUserControls extends Component
     renderAdminButton(){
         if(this.props.auth.user.level === ADMIN_LEVEL){
             return (
-                <li>
+                <li className = "mx-1">
                     <Link to = "/admin" className = "btn btn-primary">Admin</Link>
                 </li>
             );
@@ -22,6 +22,9 @@ class NavbarUserControls extends Component
         return (
             <ul className = "nav navbar-nav navbar-right">
                 {this.renderAdminButton()}
+                <li>
+                    <Link to = "/profile" className = "btn btn-primary">Profile</Link>
+                </li>
                 <li>
                     <Notifications/>
                 </li>

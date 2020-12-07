@@ -9,9 +9,6 @@ class Logout extends Component
     componentDidMount(){
         if(this.props.auth.isAuthenticated){
             this.props.userLogout();
-            setTimeout(() => {
-                this.props.history.push('/');
-            }, 2000);
         }
         else{
             this.props.history.push('/');

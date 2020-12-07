@@ -95,7 +95,7 @@ class Store
     }
 
     getSocketIDsOfUser(userID){
-        const index = this.loggedInUsers.findIndex(u => u.userID === userID);
+        const index = this.loggedInUsers.findIndex(u => u.userID == userID);
         if(index >= 0){
             return this.loggedInUsers[index].socketIDs;
         }
@@ -118,7 +118,6 @@ class Store
                             socketID: socketID
                         }
                     ];
-                    console.log(usersOfCall);
                 }
             }
             else{
@@ -134,7 +133,6 @@ class Store
                         }
                     ]
                 }];
-                console.log(usersOfCall);
             }
         }
         else{
@@ -153,16 +151,27 @@ class Store
         return usersOfCall;
     }
 
+    callInProgress(groupID){
+        if(this.callsInProgress.length > 0){
+            const callIndex = this.callsInProgress.findIndex(c => c.groupID == groupID);
+            return callIndex >= 0;
+        }
+        return false;
+    }
+
     leaveCall(groupID, socketID){
         let usersOfCall = null;
         if(this.callsInProgress.length > 0){
             const callIndex = this.callsInProgress.findIndex(c => c.groupID === groupID);
             if(callIndex >= 0){
-                const userID = this.getUserID(socketID)
+                const userID = this.getUserID(socketID);
                 const userIndex = this.callsInProgress[callIndex].users.findIndex(u => u.userID == userID);
                 if(userIndex >= 0){
                     this.callsInProgress[callIndex].users = [...this.callsInProgress[callIndex].users.slice(0, userIndex), ...this.callsInProgress[callIndex].users.slice(userIndex+1)];
                     usersOfCall = this.callsInProgress[callIndex].users;
+                    if(this.callsInProgress[callIndex].users.length === 0){
+                        this.callsInProgress = [...this.callsInProgress.splice(0, callIndex), ...this.callsInProgress.splice(callIndex+1)];
+                    }
                 }
             }
         }

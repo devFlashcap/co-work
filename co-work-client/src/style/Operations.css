@@ -2,14 +2,13 @@
     list-style: none;
     padding: 0;
     text-align: left;
+    color: #eee;
 }
 
-.operations ul li p {
-    cursor: pointer;
+.operations ul li{
+    border-bottom: 1px solid #eee;
 }
 
-.operations ul li p span{
-    margin-right: 5px;
-    padding: 10px;
-    font-weight: bold;
+div.basic-multi-select{
+    color: #000;
 }

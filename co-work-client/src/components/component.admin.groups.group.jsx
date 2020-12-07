@@ -93,8 +93,6 @@ class AdminGroupsGroup extends Component
             avatar_bgcolor: this.state.group_avatar_bgcolor,
             members: this.state.group_members
         }
-
-        console.log(this.state.mode);
         
         if(this.state.mode === "create"){
             this.props.groupCreate(data);
@@ -134,12 +132,8 @@ class AdminGroupsGroup extends Component
             }
         }
 
-        let defaultValueLeader = null;
-        let defaultValueMembers = null;
-        if(this.state.group_name){
-            defaultValueLeader = leaderOptions.find(lo => lo.value === this.state.group_leader);
-            defaultValueMembers = memberOptions.filter(mo => this.state.group_members.includes(mo.value));
-        }
+        let defaultValueLeader = leaderOptions.find(lo => lo.value === this.state.group_leader);
+        let defaultValueMembers = memberOptions.filter(mo => this.state.group_members.includes(mo.value));
 
         return (
             <div className = "dashboard">
@@ -189,7 +183,7 @@ class AdminGroupsGroup extends Component
                         <Select
                             id = "group_leader"
                             name = "group_leader"
-                            value = {defaultValueLeader}
+                            value = {defaultValueLeader || this.state.group_leader}
                             options = {leaderOptions}
                             onChange = { this.onChangeSelectLeader }
                             className = "basic-single"
@@ -202,7 +196,7 @@ class AdminGroupsGroup extends Component
                             isMulti
                             id = "group_members"
                             name = "group_members"
-                            value = {defaultValueMembers}
+                            value = {defaultValueMembers || this.state.group_members}
                             options = {memberOptions}
                             onChange = { this.onChangeSelectMembers }
                             className = "basic-multi-select"

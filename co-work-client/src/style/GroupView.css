@@ -1,15 +1,16 @@
-$blue: #0275d8;
-$inverse: #292b2c;
-
 .chat-container {
-    background: #fff;
+    margin: 15px auto;
+    background: #343a40;
     padding: 0;
     height: 100%;
+    width: 80%;
+    border: 5px solid #000;
 }
 
 .group-header {
-    background: #fff;
-    border-bottom: 1px solid #000;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    padding: 2em;
 }
 
 .group-name {
@@ -39,13 +40,13 @@ $inverse: #292b2c;
 }
 
 .chat-bubble-left{ 
-    background: $blue;
+    background: #0275d8;
     left: 0;
     float: left;
 }
 
 .chat-bubble-right{
-    background: $inverse;
+    background: #292b2c;
     right: 0;
     float: right;
 }
@@ -54,12 +55,12 @@ $inverse: #292b2c;
     display: flex;
     flex-direction: column;
     flex: 1 1 auto;
-    height: 700px;
+    height: 600px;
     overflow: auto;
     overflow-x: hidden;
 }
 
 .chat-panel {
     padding: 0 !important;
-    background: #eee;
+    margin: 0;
 }

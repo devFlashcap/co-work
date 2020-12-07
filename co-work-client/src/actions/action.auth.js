@@ -4,6 +4,7 @@ import {
     action_userSocketAssign,
     action_userSocketDeassign,
     action_userRegister,
+    action_userPasswordChange
 } from './creators/creator.auth';
 
 export const userLogin = data => dispatch => {
@@ -24,4 +25,8 @@ export const userSocketDeassign = data => dispatch => {
 
 export const userRegister = data => dispatch => {
     dispatch(action_userRegister(data));
+}
+
+export const userPasswordChange = data => dispatch => {
+    dispatch(action_userPasswordChange(data));
 }

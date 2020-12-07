@@ -16,7 +16,8 @@ import AdminGroups from './component.admin.groups';
 import AdminGroupsGroup from './component.admin.groups.group';
 import AdminRegTokens from './component.admin.regTokens';
 import AdminRegTokensRegToken from './component.admin.regTokens.regToken';
-import CallReceived from './component.modal.call.received';
+import ModalCallReceived from './component.modal.call.received';
+import Profile from './component.profile';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import '../style/App.css';
@@ -35,6 +36,7 @@ class App extends Component
                     <Route exact path = "/" component = {Dashboard} />
                     <Route exact path = "/login" component = {Login} />
                     <Route exact path = "/logout" component = {Logout} />
+                    <Route exact path = "/profile" component = {Profile} />
                     <Route exact path = "/register/:tokenID" component = {Register} />
                     <Route exact path = "/groupview" component = {GroupView} />
                     <Route exact path = "/groupcall/:groupID" component = {GroupCall} />
@@ -47,7 +49,7 @@ class App extends Component
                     <Route exact path = "/admin/regTokens" component = {AdminRegTokens} />
                     <Route exact path = "/admin/regTokens/regToken/" component = {AdminRegTokensRegToken} />
                 </Switch>
-                <CallReceived />
+                <ModalCallReceived />
             </Router>
         );
     }

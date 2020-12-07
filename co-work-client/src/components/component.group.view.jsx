@@ -5,7 +5,7 @@ import GroupControls from './component.group.controls';
 import GroupOperations from './component.group.operations';
 import { groupLeave } from '../actions/action.group';
 import { animateScroll } from "react-scroll";
-import '../style/GroupView.scss';
+import '../style/GroupView.css';
 
 class GroupView extends Component 
 {
@@ -53,9 +53,9 @@ class GroupView extends Component
 
         const groupName = (this.props.groups && this.props.groups.currentGroup && this.props.groups.currentGroup.name) ? this.props.groups.currentGroup.name : "Group name";
         return (
-            <div className="chat-container">
-                <div className="row">
-                    <div className="col-md-2 border-right">
+            <div className="chat-container p-0">
+                <div className="row p-0 m-0">
+                    <div className="col-md-3">
                         <GroupOperations />
                     </div>
                     <div className="col-md-9 chat-panel">

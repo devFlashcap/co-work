@@ -29,9 +29,9 @@ module.exports.group_create = async (store, io, socket, data) => {
 
             const notification = {
                 userID: null,
-                type: 'chat',
-                reference: data.groupID,
-                message: 'New message in group: ' + group.response.name,
+                type: 'groupadd',
+                reference: group._id,
+                message: 'You have been added to the group: ' + group.response.name,
             };
 
             for(const memberID of offlineMembers){

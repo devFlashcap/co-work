@@ -4,6 +4,8 @@ const group_leave = require('../handlers/group/handler.leave');
 const group_create = require('../handlers/group/handler.create');
 const group_modify = require('../handlers/group/handler.modify');
 const group_remove = require('../handlers/group/handler.remove');
+const group_members_add = require('../handlers/group/handler.members.add');
+const group_members_remove = require('../handlers/group/handler.members.remove');
 
 module.exports.handle_group = (store, io, socket, action) => {
     switch(action.type){
@@ -22,6 +24,11 @@ module.exports.handle_group = (store, io, socket, action) => {
         case types.IO_GROUP_REMOVE:
             group_remove.group_remove(store, io, socket, action.payload);
             break;
-
+        case types.IO_GROUP_MEMBERS_ADD:
+            group_members_add.group_members_add(store, io, socket, action.payload);
+            break;
+        case types.IO_GROUP_MEMBERS_REMOVE:
+            group_members_remove.group_members_remove(store, io, socket, action.payload);
+            break;
     }
 };
